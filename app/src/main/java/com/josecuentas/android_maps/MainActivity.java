@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        calPendiente();
     }
 
     @Override public void onMapReady(GoogleMap googleMap) {
@@ -75,5 +75,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         builder.include(new LatLng(southwest.lat, southwest.lng));
         LatLngBounds latLngCenter = builder.build();
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngCenter, 20));
+    }
+
+    private void calPendiente() {
+        LatLng start = new LatLng(0, -4);
+        LatLng end = new LatLng(3, -2);
+        double pendiente;
+        double cambioY, cambioX;
+        cambioY =  end.longitude - start.longitude;
+        cambioX =  end.latitude - start.latitude;
+        pendiente = cambioY / cambioX;
+        System.out.println("pendiente: " + pendiente);
+        System.out.println("pendiente: " + (float) pendiente);
     }
 }
